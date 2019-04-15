@@ -14,6 +14,11 @@ namespace shop_cake
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "AdminAddProduct",
+                url: "AdminAddProduct/{action}/{id}",
+                defaults: new { controller = "AdminAddProduct", action = "Index", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
                 name: "AdminProduct",
                 url: "AdminProduct/{action}/{id}",
                 defaults: new { controller = "AdminProduct", action = "Index", id = UrlParameter.Optional }
