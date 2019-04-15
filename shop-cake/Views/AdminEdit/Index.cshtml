@@ -1,4 +1,4 @@
-﻿
+﻿@Url.Action(actionName: "Index", controllerName: "AdminEdit")
 @{
     Layout = null;
 }
@@ -8,7 +8,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Untitled Document</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <style>
@@ -48,19 +48,19 @@
                 <form method="post">
                     <div class="form-group">
                         <label>Fullname</label>
-                        <input type="text" name="full" class="form-control" placeholder="Fullname" value="Nguyễn Văn A" required />
+                        <input type="text" name="full" class="form-control" placeholder="Fullname" value="Nguyễn Văn A" required=required />
                     </div>
                     <div class="form-group">
                         <label>Username</label>
-                        <input type="text" name="user" class="form-control" placeholder="Username" value="nguyenvana" required />
+                        <input type="text" name="user" class="form-control" placeholder="Username" value="nguyenvana" required=required />
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="password" name="pass" class="form-control" placeholder="Password" value="123456" required />
+                        <input type="password" name="pass" class="form-control" placeholder="Password" value="123456" required=required />
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="text" name="mail" class="form-control" placeholder="Email" value="nguyenvana@gmail.com" required />
+                        <input type="text" name="mail" class="form-control" placeholder="Email" value="nguyenvana@gmail.com" required=required />
                     </div>
                     <div class="form-group">
                         <label>Level</label>
