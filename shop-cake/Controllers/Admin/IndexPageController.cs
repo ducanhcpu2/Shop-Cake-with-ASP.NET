@@ -8,7 +8,7 @@ namespace shop_cake.Controllers.Admin
 {
     public class IndexPageController : Controller
     {
-        // GET: IndexPage//
+        // GET: IndexPage//abc
         public ActionResult Index()
         {
             return View();
