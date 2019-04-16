@@ -1,8 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@model PagedList.IPagedList<shop_cake.Models.product>
+<!DOCTYPE html>
 
 <html>
 <head>
-    
+
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,8 +32,8 @@
                 <div class="pull-right auto-width-right">
                     <ul class="top-details menu-beta l-inline">
                         <li><a href="#"><i class="fa fa-user"></i>Tài khoản</a></li>
-                        <li><a href="#">Đăng kí</a></li>
-                        <li><a href="#">Đăng nhập</a></li>
+                        <li><a href="@Url.Action(actionName:"SignUp",controllerName:"SignUp")">Đăng kí</a></li>
+                        <li><a href="@Url.Action(actionName:"Login",controllerName:"Login")">Đăng nhập</a></li>
                     </ul>
                 </div>
                 <div class="clearfix"></div>
@@ -46,10 +47,11 @@
                 <div class="pull-right beta-components space-left ov">
                     <div class="space10">&nbsp;</div>
                     <div class="beta-comp">
-                        <form role="search" method="get" id="searchform" action="/">
-                            <input type="text" value="" name="s" id="s" placeholder="Nhập từ khóa..." />
-                            <button class="fa fa-search" type="submit" id="searchsubmit"></button>
-                        </form>
+                            <form role="search" method="get" id="searchform" action="/">
+                                <input type="text" value="" name="keytext" id="s" placeholder="Nhập từ khóa..." />
+                                <button class="fa fa-search" type="submit" id="searchsubmit"></button>
+                            </form>
+
                     </div>
 
                     <div class="beta-comp">
@@ -111,17 +113,17 @@
                 <div class="visible-xs clearfix"></div>
                 <nav class="main-menu">
                     <ul class="l-inline ov">
-                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="@Url.Action(actionName:"Index",controllerName:"Home")">Trang chủ</a></li>
                         <li>
-                            <a href="#">Sản phẩm</a>
+                            <a href="@Url.Action(actionName:"Product",controllerName:"Product")">Sản phẩm</a>
                             <ul class="sub-menu">
                                 <li><a href="product_type.html">Sản phẩm 1</a></li>
                                 <li><a href="product_type.html">Sản phẩm 2</a></li>
                                 <li><a href="product_type.html">Sản phẩm 4</a></li>
                             </ul>
                         </li>
-                        <li><a href="about.html">Giới thiệu</a></li>
-                        <li><a href="contacts.html">Liên hệ</a></li>
+                        <li><a href="@Url.Action(actionName:"About",controllerName:"Home")">Giới thiệu</a></li>
+                        <li><a href="@Url.Action(actionName:"Contact",controllerName:"Home")">Liên hệ</a></li>
                     </ul>
                     <div class="clearfix"></div>
                 </nav>
@@ -129,7 +131,7 @@
         </div> <!-- .header-bottom -->
     </div> <!-- #header -->
 
-        @RenderBody()
+    @RenderBody()
 
     <div id="footer" class="color-div">
         <div class="container">
@@ -145,12 +147,12 @@
                         <h4 class="widget-title">Information</h4>
                         <div>
                             <ul>
-                                <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Web Design</a></li>
-                                <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Web development</a></li>
-                                <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Marketing</a></li>
-                                <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Tips</a></li>
-                                <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Resources</a></li>
-                                <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Illustrations</a></li>
+                                <li><a href="#"><i class="fa fa-chevron-right"></i> Web Design</a></li>
+                                <li><a href="#"><i class="fa fa-chevron-right"></i> Web development</a></li>
+                                <li><a href="#"><i class="fa fa-chevron-right"></i> Marketing</a></li>
+                                <li><a href="#"><i class="fa fa-chevron-right"></i> Tips</a></li>
+                                <li><a href="#"><i class="fa fa-chevron-right"></i> Resources</a></li>
+                                <li><a href="#"><i class="fa fa-chevron-right"></i> Illustrations</a></li>
                             </ul>
                         </div>
                     </div>
@@ -209,15 +211,30 @@
     <!--customjs-->
     <script src="~/assets/dest/js/custom2.js"></script>
     <script>
-	$(document).ready(function($) {
-		$(window).scroll(function(){
-			if($(this).scrollTop()>150){
-			$(".header-bottom").addClass('fixNav')
-			}else{
-				$(".header-bottom").removeClass('fixNav')
-			}}
-		)
-	})
+        $(document).ready(function ($) {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 150) {
+                    $(".header-bottom").addClass('fixNav')
+                } else {
+                    $(".header-bottom").removeClass('fixNav')
+                }
+            }
+            )
+        });
+
+       // GetPaging
+
+        $('beta-comp').on('click', '#searchsubmit', function (e) {
+            e.preventDefault();
+            var name = $('#keytext').val();
+            if (name.trim() != null && name.trim().length != 0 && name.trim() != null) {
+                var url = "/Home/GetPaging?searchString=" + name;
+                window.location = url;
+            } else {
+                var url = "/Home/Index";
+                window.location = url;
+            }
+        });
     </script>
 </body>
 </html>
