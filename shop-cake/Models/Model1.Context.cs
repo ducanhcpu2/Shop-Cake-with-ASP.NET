@@ -14,19 +14,19 @@ namespace shop_cake.Models
     using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Core.Objects;
     using System.Linq;
-    
+
     public partial class shop_cakeEntities : DbContext
     {
         public shop_cakeEntities()
             : base("name=shop_cakeEntities")
         {
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public virtual DbSet<admin> admins { get; set; }
         public virtual DbSet<bill> bills { get; set; }
         public virtual DbSet<bill_detail> bill_detail { get; set; }
@@ -36,7 +36,8 @@ namespace shop_cake.Models
         public virtual DbSet<product_types> product_types { get; set; }
         public virtual DbSet<slide> slides { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-    
+
+        
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
             var diagramnameParameter = diagramname != null ?
