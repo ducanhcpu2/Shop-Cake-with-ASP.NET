@@ -5,14 +5,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using static shop_cake.Models.shop_cakeEntities;
+using static shop_cake.Models.shop_cakeEntities1;
 
 namespace shop_cake.Controllers.Admin
 {
     public class AdminProductController : Controller
     {
         // GET: AdminProduct
-        private shop_cakeEntities db = new shop_cakeEntities();
+        private shop_cakeEntities1 db = new shop_cakeEntities1();
         public ActionResult Index(int? page) 
         {
             var  products =
