@@ -1,6 +1,10 @@
+<<<<<<< HEAD
+﻿@Url.Action(actionName: "Index", controllerName: "AdminProduct")
+=======
 ﻿@model PagedList.IPagedList<shop_cake.Models.product_productType_ViewModel>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+>>>>>>> fe05481048ae4e5d11088f29aa2d4fb958c99329
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/LayoutAdmin.cshtml";
@@ -20,8 +24,13 @@
                 <div class="panel-heading">Danh sách sản phẩm</div>
                 <div class="panel-body">
                     <div class="bootstrap-table">
+<<<<<<< HEAD
+                        <div class="table-responsive">
+                            <a href="/AdminAddProduct" class="btn btn-primary">Thêm sản phẩm</a>
+=======
                         <div class="table-responsive"  id="abc">
                             <a href="@Url.Action(actionName:"Index",controllerName:"AdminAddProduct")" class="btn btn-primary">Thêm sản phẩm</a>
+>>>>>>> fe05481048ae4e5d11088f29aa2d4fb958c99329
                             <table class="table table-bordered" style="margin-top:20px;">
                                 <thead>
                                     <tr class="bg-primary">
