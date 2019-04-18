@@ -20,7 +20,7 @@ namespace shop_cake.Controllers
    
     public class HomeController : Controller
     {
-        private shop_cakeEntities db = new shop_cakeEntities();
+        private shop_cakeEntities1 db = new shop_cakeEntities1();
         public async Task<ActionResult> Index()
         {
             var slides_from_db = await db.slides.ToListAsync();
