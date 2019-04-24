@@ -18,12 +18,12 @@
                     Thêm danh mục
                 </div>
                 <div class="panel-body">
-                    <form action="@Url.Action("AddCategory","AdminCategory")">
+                    <form action="@Url.Action("AddCategory","AdminCategory")" method="post">
                         <div class="form-group">
                             <label>Tên danh mục:</label>
                             <input type="text" name="name" class="form-control" placeholder="Tên danh mục...">
                         </div>
-                        <input type="submit" name="submit" value="Thêm" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary">Add</button>
                     </form>
                 </div>
             </div>
