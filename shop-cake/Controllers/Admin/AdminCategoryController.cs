@@ -23,7 +23,7 @@ namespace shop_cake.Controllers.Admin
             {
                 db.product_types.Add(new product_types
                 {
-                    name = model.product_types_name
+                    name = model.name
                 });
                 db.SaveChanges();
                 return RedirectToAction(actionName: "Index", controllerName: "AdminCategory");

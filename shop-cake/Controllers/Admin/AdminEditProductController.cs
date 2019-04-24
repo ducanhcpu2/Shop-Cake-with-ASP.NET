@@ -18,7 +18,7 @@ namespace shop_cake.Controllers.Admin
             join
             c in db.product_types
             on p.id_product_type equals c.id_product_type
-            select new product_types()
+            select new product_productType_ViewModel()
             {
                 id_product = p.id_product,
                 product_name = p.name,
@@ -34,7 +34,7 @@ namespace shop_cake.Controllers.Admin
             return View();
         }
         [HttpPost]
-        public ActionResult Edit(product_types model)
+        public ActionResult Edit(product_productType_ViewModel model)
         {
             var obj = db.products.FirstOrDefault(x => x.id_product == model.id_product);
             obj.name = model.product_name;
