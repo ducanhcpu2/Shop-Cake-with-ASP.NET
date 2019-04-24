@@ -38,7 +38,7 @@ namespace shop_cake.Models
         public virtual ICollection<bill_detail> bill_detail { get; set; }
         public virtual product_types product_types { get; set; }
     }
-    public partial class product_productType_ViewModel
+    public partial class product_types
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id_product { get; set; }

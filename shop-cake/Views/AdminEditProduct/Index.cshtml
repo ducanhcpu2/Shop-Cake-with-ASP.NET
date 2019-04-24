@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/LayoutAdmin.cshtml";
 }
@@ -17,60 +16,61 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">Sửa sản phẩm</div>
                 <div class="panel-body">
-                    <form method="post" enctype="multipart/form-data">
+                    <form action="@Url.Action("Edit","AdminEditProduct")" method="post" enctype="multipart/form-data">
                         <div class="row" style="margin-bottom:40px">
                             <div class="col-xs-8">
                                 <div class="form-group">
                                     <label>Tên sản phẩm</label>
-                                    <input required type="text" name="name" class="form-control">
+                                    <input readonly required type="text" name="id_product" class="form-control" value="@ViewBag.products.id_product">
+                                </div>
+                                <div class="form-group">
+                                    <label>Tên sản phẩm</label>
+                                    <input required type="text" name="product_name" class="form-control" value="@ViewBag.products.product_name">
                                 </div>
                                 <div class="form-group">
                                     <label>Giá sản phẩm</label>
-                                    <input required type="number" name="price" class="form-control">
+                                    <input required type="number" name="unit_price" class="form-control" value="@ViewBag.products.unit_price">
                                 </div>
                                 <div class="form-group">
                                     <label>Ảnh sản phẩm</label>
-                                    <input id="img" type="file" name="img" class="form-control hidden" onchange="changeImg(this)">
-                                    <img id="avatar" class="thumbnail" width="300px" src="img/iphone7-plus-black-select-2016.jpg">
+                                    <input id="img" type="file" name="image" class="form-control hidden" onchange="changeImg(this)">
+                                    <img id="avatar" class="thumbnail" width="300px" src="~/image/product/@ViewBag.products.image">
                                 </div>
                                 <div class="form-group">
                                     <label>Giá Khuyến Mãi</label>
-                                    <input required type="text" name="promotion" class="form-control">
+                                    <input required type="text" name="promotion_price" class="form-control" value="@ViewBag.products.promotion_price">
                                 </div>
-                                
+                                <div class="form-group">
+                                    <label>Tình trạng</label>
+                                    <br />
+                                    <input type="radio" name="new" value="1">Hàng Mới<br>
+                                    <input type="radio" name="new" value="0">Hàng Cũ<br>
+                                </div>
+                                <div class="form-group">
+                                    <label>Đơn vị</label>
+                                    <input required type="text" name="unit" class="form-control" value="@ViewBag.products.unit">
+                                </div>
                                 <div class="form-group">
                                     <label>Mô tả</label>
-                                    <input required type="text" name="description" class="form-control">
+                                    <input required type="text" name="description" class="form-control" value="@ViewBag.products.description">
                                 </div>
-                                <div class="form-group">
-                                    <label>Trạng thái</label>
-                                    <select required name="status" class="form-control">
-                                        <option value="1">Còn hàng</option>
-                                        <option value="0">Hết hàng</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Tình Trạng</label>
-                                    
-                                </div>
+
                                 <div class="form-group">
                                     <label>Danh mục</label>
-                                    <select required name="cate" class="form-control">
-                                        <option value="1">iPhone</option>
-                                        <option value="2">Samsung</option>
-                                        <option value="3">Nokia</option>
-                                        <option value="4">HTC</option>
-                                        <option value="5">LG</option>
-                                        <option value="6">Sony</option>
+                                    <select required name="id_product_type" class="form-control">
+                                        @foreach (var a in ViewBag.Products_Type)
+                                        {
+                                            <option value="@a.id_product_type">@a.name</option>
+                                        }
                                     </select>
                                 </div>
-                                <div class="form-group">
-                                    <label>Sản phẩm nổi bật</label><br>
-                                    Có: <input type="radio" name="featured" value="1">
-                                    Không: <input type="radio" checked name="featured" value="0">
-                                </div>
+                                @*<div class="form-group">
+            <label>Sản phẩm nổi bật</label><br>
+            Có: <input type="radio" name="featured" value="1">
+            Không: <input type="radio" checked name="featured" value="0">
+        </div>*@
                                 <input type="submit" name="submit" value="Thêm" class="btn btn-primary">
-                                <a href="#" class="btn btn-danger">Hủy bỏ</a>
+                                <a href="@Url.Action(actionName:"Index",controllerName:"AdminProduct")" class="btn btn-danger">Hủy bỏ</a>
                             </div>
                         </div>
                     </form>

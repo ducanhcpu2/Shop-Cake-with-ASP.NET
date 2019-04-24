@@ -17,7 +17,7 @@ namespace shop_cake.Controllers.Admin
             return View();
         }
         [HttpPost]
-        public ActionResult AddProduct(product_productType_ViewModel model)
+        public ActionResult AddProduct(product_types model)
         {
             
             if (ModelState.IsValid)
