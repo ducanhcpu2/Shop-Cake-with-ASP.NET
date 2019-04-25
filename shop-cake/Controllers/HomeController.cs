@@ -11,6 +11,7 @@ using shop_cake.Models;
 using PagedList;
 namespace shop_cake.Controllers
 {
+    //aaaa
     public class Slides
     {
         public int id_slide;
