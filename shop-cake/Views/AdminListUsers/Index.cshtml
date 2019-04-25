@@ -1,0 +1,41 @@
+﻿
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/LayoutAdmin.cshtml";
+    }
+    <div class="container" style=" width:930px">
+        <div class="row" >
+            <div class="col-sm-12" style="width:1150px">
+                @*<div class="alert alert-success">Added user success!</div>*@
+                <table class="table table-striped">
+                    <tr id="tbl-first-row">
+                        <td width="5%">ID</td>
+                        <td width="15%">Name</td>
+                        <td width="20%">Email</td>
+                        <td width="7%">Gender</td>
+                        <td width="8%">Phone number</td>
+                        <td width="10%">Address</td>
+                        <td width="15%">Created at</td>
+                        <td width="15%">Updated at</td>
+                    </tr>
+                    @foreach (var item in ViewBag.Users)
+                    {
+                        <tr>
+                            <td>@item.id_customer</td>
+                            <td>@item.name</td>
+                            <td>@item.email</td>
+                            <td>@item.gender</td>
+                            <td>@item.phone_number</td>
+                            <td><a href="#">@item.address</a></td>
+                            <td><a href="#">@item.created_at</a></td>
+                            <td><a href="#">@item.updated_at</a></td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+
+@*</body>
+</html>*@
+

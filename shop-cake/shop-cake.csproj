@@ -146,6 +146,7 @@
     <Compile Include="Controllers\Admin\AdminEditCategoryController.cs" />
     <Compile Include="Controllers\Admin\AdminEditController.cs" />
     <Compile Include="Controllers\Admin\AdminEditProductController.cs" />
+    <Compile Include="Controllers\Admin\AdminListUsersController.cs" />
     <Compile Include="Controllers\Admin\AdminLoginController.cs" />
     <Compile Include="Controllers\Admin\AdminProductController.cs" />
     <Compile Include="Controllers\Admin\IndexPageController.cs" />
@@ -3116,6 +3117,7 @@
     <Content Include="Views\AdminProduct\Index.cshtml" />
     <Content Include="Views\IndexPage\Index.cshtml" />
     <Content Include="Views\Home\GetPaging.cshtml" />
+    <Content Include="Views\AdminListUsers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
