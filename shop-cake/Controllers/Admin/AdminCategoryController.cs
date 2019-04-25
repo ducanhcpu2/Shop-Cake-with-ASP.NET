@@ -13,6 +13,7 @@ namespace shop_cake.Controllers.Admin
         // GET: AdminCategory
         public ActionResult Index()
         {
+            ViewBag.Product_Type = db.product_types;
             return View();
         }
         [HttpPost]
@@ -29,6 +30,16 @@ namespace shop_cake.Controllers.Admin
                 return RedirectToAction(actionName: "Index", controllerName: "AdminCategory");
             }
             return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
+            product_types obj = db.product_types.Find(id);
+            db.product_types.Remove(obj);
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "AdminCategory");
         }
     }
 }

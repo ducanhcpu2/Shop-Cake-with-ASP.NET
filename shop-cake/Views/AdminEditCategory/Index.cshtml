@@ -18,10 +18,15 @@
                     Sửa danh mục
                 </div>
                 <div class="panel-body">
-                    <div class="form-group">
-                        <label>Tên danh mục:</label>
-                        <input type="text" name="name" class="form-control" placeholder="Tên danh mục...">
-                    </div>
+                    <form action="@Url.Action("Edit","AdminEditCategory")" method="post">
+                        <div class="form-group">
+                            <label>Tên danh mục:</label>
+                            <input name="id_product_type" style="display:none" value="@ViewBag.Category.id_product_type" />
+                            <input type="text" name="name" class="form-control" placeholder="Tên danh mục..." value="@ViewBag.Category.name">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Sửa</button>
+                    </form>
+                    
                 </div>
             </div>
         </div>
