@@ -1,8 +1,8 @@
-﻿@{
+﻿@model IEnumerable<shop_cake.Models.product_types>
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/LayoutAdmin.cshtml";
 }
-
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
     <div class="row">
         <div class="col-lg-12">
@@ -32,27 +32,29 @@
                 <div class="panel-heading">Danh sách danh mục</div>
                 <div class="panel-body">
                     <div class="bootstrap-table">
-                        @foreach (var item in ViewBag.Produc_Type)
-                        {
-                            <table class="table table-bordered">
+                        <table class="table table-bordered">
+                            @foreach (var item in ViewBag.Product_Type)
+                            {
                                 <thead>
                                     <tr class="bg-primary">
                                         <th>Tên danh mục</th>
                                         <th style="width:30%">Tùy chọn</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>iPhone</td>
-                                        <td>
-                                            <a href="#" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span> Sửa</a>
-                                            <a href="#" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Xóa</a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        }
-
+                                <form action="@Url.Action("Delete","AdminCategory")" method="post">
+                                    <tbody>
+                                        <tr>
+                                            <td>@item.name</td>
+                                            <input name="id" style="display:none" value="@item.id_product_type" />
+                                            <td>
+                                                <a href="@Url.Action("Index","AdminEditCategory",new { id = @item.id_product_type})" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span> Sửa</a>
+                                                <button onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger" type="submit"><span class="glyphicon glyphicon-trash"></span>Xóa</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </form>
+                            }
+                        </table>
                     </div>
                     <div class="clearfix"></div>
                 </div>
