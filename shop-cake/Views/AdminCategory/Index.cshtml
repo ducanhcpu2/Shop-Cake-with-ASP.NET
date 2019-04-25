@@ -33,14 +33,14 @@
                 <div class="panel-body">
                     <div class="bootstrap-table">
                         <table class="table table-bordered">
+                            <thead>
+                                <tr class="bg-primary">
+                                    <th>Tên danh mục</th>
+                                    <th style="width:30%">Tùy chọn</th>
+                                </tr>
+                            </thead>
                             @foreach (var item in ViewBag.Product_Type)
                             {
-                                <thead>
-                                    <tr class="bg-primary">
-                                        <th>Tên danh mục</th>
-                                        <th style="width:30%">Tùy chọn</th>
-                                    </tr>
-                                </thead>
                                 <form action="@Url.Action("Delete","AdminCategory")" method="post">
                                     <tbody>
                                         <tr>

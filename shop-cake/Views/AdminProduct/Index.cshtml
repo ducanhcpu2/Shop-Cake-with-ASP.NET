@@ -15,7 +15,6 @@
 
     <div class="row">
         <div class="col-xs-12 col-md-12 col-lg-12">
-
             <div class="panel panel-primary">
                 <div class="panel-heading">Danh sách sản phẩm</div>
                 <div class="panel-body">
@@ -32,43 +31,38 @@
                                         <th>Mô tả</th>
                                         <th width="20%">Ảnh sản phẩm</th>
                                         <th>Danh mục</th>
-                                        <th>Tùy chọn</th>
+                                        <th width="5%">Tùy chọn</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    @foreach (var item in Model)
-                                    {
-                                    <tr>
-                                        <td>@item.id_product</td>
-                                        <td>@item.product_name</td>
-                                        <td>@item.unit_price</td>
-                                        <td>@item.promotion_price</td>
-                                        <td>@item.description</td>
-                                        <td>
-                                            <img width="200px" src="~/image/product/@item.image" class="thumbnail">
-                                        </td>
-                                        <td>@item.product_types_name</td>
-                                        <td>
-                                            <a href="@Url.Action("Index","AdminEditProduct", new { id = @item.id_product} )" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
-                                            <a href="@Url.Action("Delete","AdminEditProduct",new { id = @item.id_product})" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
-                                            @*<button type="submit" class="btn btn-danger" value="Delete">Xóa</button>*@
+                                @foreach (var item in Model)
+                                {
+                                    <form action="@Url.Action("Delete","AdminEditProduct")" method="post">
+                                        <tbody>
+                                            <tr>
+                                                <td>@item.id_product</td>
+                                                <input name="id" value="@item.id_product" style="display:none" />
+                                                <td>@item.product_name</td>
+                                                <td>@item.unit_price</td>
+                                                <td>@item.promotion_price</td>
+                                                <td>@item.description</td>
+                                                <td>
+                                                    <img width="200px" src="~/image/product/@item.image" class="thumbnail">
+                                                </td>
+                                                <td>@item.product_types_name</td>
+                                                <td>
+                                                    <a href="@Url.Action("Index","AdminEditProduct", new { id = @item.id_product} )" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
+                                                    <button onclick="return confirm('Bạn có chắc chắn muốn xóa?')" type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </form>
+                                }
 
-                                            @*@using (Html.BeginForm("Delete", "AdminEditProduct", FormMethod.Post, new { id = item.id_product }))
-                                            {
-                                                @Html.AntiForgeryToken()
-                                                //@Html.HiddenFor()
-                                                //@Html.ActionLink("Delete", "Delete", new { id=item.id_product})
-                                            }*@
-                                        </td>
-                                    </tr>
-                                    }
+                                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-                                    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
-                                    @Html.PagedListPager(Model, page => Url.Action("Index","AdminProduct",
-                                        new { page })
-                                        , PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "abc" }))
-                                </tbody>
+                                @Html.PagedListPager(Model, page => Url.Action("Index","AdminProduct",
+                                    new { page })
+                                    , PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "abc" }))
                             </table>
                         </div>
                     </div>

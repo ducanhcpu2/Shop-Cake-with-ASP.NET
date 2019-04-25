@@ -48,7 +48,7 @@ namespace shop_cake.Controllers.Admin
             db.SaveChanges();
             return RedirectToAction("Index","AdminProduct");
         }
-        [HttpGet]
+        [HttpPost]
         //[ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
