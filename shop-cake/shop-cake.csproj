@@ -151,6 +151,7 @@
     <Compile Include="Controllers\Admin\IndexPageController.cs" />
     <Compile Include="Controllers\Admin\shop_cakeEntities.cs" />
     <Compile Include="Controllers\CheckOutController.cs" />
+    <Compile Include="Controllers\Code\AdminSession.cs" />
     <Compile Include="Controllers\Code\SessionHelper.cs" />
     <Compile Include="Controllers\Code\UserSession.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -174,6 +175,7 @@
     <Compile Include="Models\customer.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginAdminModel.cs" />
     <Compile Include="Models\LoginUserModel.cs" />
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
@@ -199,6 +201,7 @@
     <Compile Include="Models\product_types.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Models\slide.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -3113,7 +3116,6 @@
     <Content Include="AdminItem\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="AdminItem\tables\data1.json" />
     <Content Include="AdminItem\tables\data2.json" />
-<<<<<<< HEAD
     <Content Include="obj\Debug\edmxResourcesToEmbed\Models\Model1.csdl" />
     <Content Include="obj\Debug\edmxResourcesToEmbed\Models\Model1.msl" />
     <Content Include="obj\Debug\edmxResourcesToEmbed\Models\Model1.ssdl" />
@@ -3131,7 +3133,6 @@
     <Content Include="bin\roslyn\vbc.rsp" />
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
     <Content Include="bin\shop-cake.dll.config" />
-=======
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -3139,7 +3140,6 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
->>>>>>> fe05481048ae4e5d11088f29aa2d4fb958c99329
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -3212,10 +3212,7 @@
     <Content Include="Views\AdminLogin\Index.cshtml" />
     <Content Include="Views\AdminProduct\Index.cshtml" />
     <Content Include="Views\IndexPage\Index.cshtml" />
-<<<<<<< HEAD
-=======
     <Content Include="Views\Home\GetPaging.cshtml" />
->>>>>>> fe05481048ae4e5d11088f29aa2d4fb958c99329
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

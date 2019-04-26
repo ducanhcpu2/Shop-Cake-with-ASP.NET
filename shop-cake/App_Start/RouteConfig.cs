@@ -24,6 +24,11 @@ namespace shop_cake
                 defaults: new { controller = "AdminProduct", action = "Index", id = UrlParameter.Optional }
             );
             routes.MapRoute(
+                name: "AdminLogin",
+                url: "AdminLogin/{action}/{id}",
+                defaults: new { controller = "AdminLogin", action = "Login", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
                 name: "AdminCategory",
                 url: "AdminCategory/{action}/{id}",
                 defaults: new { controller = "AdminCategory", action = "Index", id = UrlParameter.Optional }

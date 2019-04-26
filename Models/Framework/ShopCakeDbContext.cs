@@ -8,7 +8,7 @@ namespace Models.Framework
     public partial class ShopCakeDbContext : DbContext
     {
         public ShopCakeDbContext()
-            : base("shop_cakeEntities")
+            : base("shop_cakeEntities1")
         {
         }
 

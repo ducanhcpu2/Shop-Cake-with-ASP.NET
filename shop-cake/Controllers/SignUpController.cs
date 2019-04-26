@@ -9,6 +9,7 @@ namespace shop_cake.Controllers
     public class SignUpController : Controller
     {
         // GET: SignUp
+        [HttpGet]
         public ActionResult SignUp()
         {
             return View();
