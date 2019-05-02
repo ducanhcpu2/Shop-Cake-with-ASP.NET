@@ -17,20 +17,13 @@ namespace shop_cake.Controllers.Admin
             return View();
         }
         [HttpPost]
-        public ActionResult AddProduct(product_productType_ViewModel model)
+        public ActionResult AddProduct(product_productType_ViewModel model, System.Web.HttpPostedFileWrapper image)
         {
             
             if (ModelState.IsValid)
             {
-                //HttpPostedFileBase ImageUrl = Request.Files["model.image"];
-                //var fileName = Path.GetFileName(ImageUrl.FileName);
-                var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), model.image);
-                //ImageUrl.SaveAs(path);
-                //var imageName = upload.FileName;
-                //var path = System.IO.Path.Combine(Server.MapPath("~/Upload/Images"), imageName);
-                //upload.SaveAs(path);
                 db.products.Add(new product { name = model.product_name, unit_price = model.unit_price , promotion_price=model.promotion_price
-                    ,image= path,
+                    ,image= image.FileName,
                     @new=model.@new,unit=model.unit,description=model.description,id_product_type=model.id_product_type
                 });
                 db.SaveChanges();
