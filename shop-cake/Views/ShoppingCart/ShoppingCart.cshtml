@@ -1,9 +1,23 @@
-﻿
+﻿@using shop_cake.Models;
 @{
     ViewBag.Title = "ShoppingCart";
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
 }
+@{
+    ShoppingCart cart = (ShoppingCart)Session["cart"];
+    List<Item> lst = new List<Item>();
+    bool yourBool = true;
+    if (cart == null)
+    {
+        cart = new ShoppingCart();
+        yourBool = false;
+    }
+    lst = cart.Item;
 
+
+    var result = 0;
+    var count = cart.TotalItem();
+}
 <div class="inner-header">
     <div class="container">
         <div class="pull-left">
@@ -26,134 +40,82 @@
             <table class="shop_table beta-shopping-cart-table" cellspacing="0">
                 <thead>
                     <tr>
-                        <th class="product-name">Product</th>
-                        <th class="product-price">Price</th>
-                        <th class="product-status">Status</th>
-                        <th class="product-quantity">Qty.</th>
-                        <th class="product-subtotal">Total</th>
-                        <th class="product-remove">Remove</th>
+                        <th class="product-name">sản phẩm</th>
+                        <th class="product-price">giá</th>
+                        <th class="product-status">tình trạng</th>
+                        <th class="product-quantity">số lượng</th>
+                        <th class="product-subtotal">tổng giá tiền</th>
+                        <th class="product-remove">xóa</th>
                     </tr>
                 </thead>
-                <tbody>
-
-                    <tr class="cart_item">
-                        <td class="product-name">
-                            <div class="media">
-                                <img class="pull-left" src="assets/dest/images/shoping1.jpg" alt="">
-                                <div class="media-body">
-                                    <p class="font-large table-title">Men’s Belt</p>
-                                    <p class="table-option">Color: Red</p>
-                                    <p class="table-option">Size: M</p>
-                                    <a class="table-edit" href="#">Edit</a>
+                @foreach (var item in lst.TakeWhile(x => yourBool))
+                {
+                    <tbody>
+                        <tr class="cart_item">
+                            <td class="product-name">
+                                <div class="media">
+                                    <img class="pull-left" src="~/image/product/@item.image" alt="" style="height:120px;width:140px">
+                                    <div class="media-body">
+                                        <p class="font-large table-title" style="font-weight:bold">@item.name</p>
+                                        @*<p class="table-option">Color: Red</p>*@
+                                        <a class="table-edit" href="#">Edit</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
+                            </td>
+                            <td class="product-price">
+                                <span class="amount">
+                                    @if (@item.promotion_price > 0)
+                                    {
+                                        @item.promotion_price
+                                    }
+                                    else
+                                    {
+                                        @item.unit_price
 
-                        <td class="product-price">
-                            <span class="amount">$235.00</span>
-                        </td>
+                                    }
+                                    VND
+                                </span>
+                            </td>
+                            @if (item.@new == 1)
+                            {
+                                <td class="product-status" style="font-weight:bold">bánh mới</td>
+                            }
+                            else
+                            {
+                                <td class="product-status" style="font-weight:bold">bánh cũ</td>
+                            }
+                            <td class="product-quantity">
+                                <select name="product-qty" id="product-qty">
+                                        <option value="@item.quantity">@item.quantity</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                            </td>
 
-                        <td class="product-status">
-                            In Stock
-                        </td>
+                            <td class="product-subtotal">
+                                <span class="amount">
+                                    @if (@item.promotion_price > 0)
+                                    {
+                                        @(item.promotion_price * item.quantity)
+                                    }
+                                    else
+                                    {
+                                        @(item.unit_price * item.quantity)
+                                    }
+                                    VND
+                                </span>
+                            </td>
 
-                        <td class="product-quantity">
-                            <select name="product-qty" id="product-qty">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                        </td>
+                            <td class="product-remove">
+                                <a href="#" class="remove" title="Remove this item"><i class="fa fa-trash-o"></i></a>
+                            </td>
+                        </tr>
 
-                        <td class="product-subtotal">
-                            <span class="amount">$235.00</span>
-                        </td>
-
-                        <td class="product-remove">
-                            <a href="#" class="remove" title="Remove this item"><i class="fa fa-trash-o"></i></a>
-                        </td>
-                    </tr>
-                    <tr class="cart_item">
-                        <td class="product-name">
-                            <div class="media">
-                                <img class="pull-left" src="assets/dest/images/shoping2.jpg" alt="">
-                                <div class="media-body">
-                                    <p class="font-large table-title">Men’s Belt</p>
-                                    <p class="table-option">Color: Red</p>
-                                    <p class="table-option">Size: M</p>
-                                    <a class="table-edit" href="#">Edit</a>
-                                </div>
-                            </div>
-                        </td>
-
-                        <td class="product-price">
-                            <span class="amount">$235.00</span>
-                        </td>
-
-                        <td class="product-status">
-                            In Stock
-                        </td>
-
-                        <td class="product-quantity">
-                            <select name="product-qty" id="product-qty">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                        </td>
-
-                        <td class="product-subtotal">
-                            <span class="amount">$235.00</span>
-                        </td>
-
-                        <td class="product-remove">
-                            <a href="#" class="remove" title="Remove this item"><i class="fa fa-trash-o"></i></a>
-                        </td>
-                    </tr>
-                    <tr class="cart_item">
-                        <td class="product-name">
-                            <div class="media">
-                                <img class="pull-left" src="assets/dest/images/shoping3.jpg" alt="">
-                                <div class="media-body">
-                                    <p class="font-large table-title">Men’s Belt</p>
-                                    <p class="table-option">Color: Red</p>
-                                    <p class="table-option">Size: M</p>
-                                    <a class="table-edit" href="#">Edit</a>
-                                </div>
-                            </div>
-                        </td>
-
-                        <td class="product-price">
-                            <span class="amount">$235.00</span>
-                        </td>
-
-                        <td class="product-status">
-                            In Stock
-                        </td>
-
-                        <td class="product-quantity">
-                            <select name="product-qty" id="product-qty">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                        </td>
-
-                        <td class="product-subtotal">
-                            <span class="amount">$235.00</span>
-                        </td>
-
-                        <td class="product-remove">
-                            <a href="#" class="remove" title="Remove this item"><i class="fa fa-trash-o"></i></a>
-                        </td>
-                    </tr>
-                </tbody>
+                    </tbody>
+                }
 
                 <tfoot>
                     <tr>
@@ -457,3 +419,5 @@
 
     </div> <!-- #content -->
 </div> <!-- .container -->
+
+
