@@ -13,9 +13,9 @@ namespace shop_cake.Controllers.Admin
     {
         [HttpGet]
         // GET: AdminLogin
-        public ActionResult Login()
+        public ActionResult Index()
         {
-            return View("Index");
+            return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
