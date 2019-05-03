@@ -33,4 +33,67 @@ namespace shop_cake.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<bill_detail> bill_detail { get; set; }
     }
+    public partial class Item
+    {
+        public int id;
+        public string name;
+        public string description;
+        public Nullable<double> unit_price;
+        public Nullable<double> promotion_price;
+        public string image;
+        public string unit;
+        public Nullable<byte> @new;
+        public Nullable<System.DateTime> created_at;
+        public Nullable<System.DateTime> updated_at;
+        public int id_product_type;
+
+        public int quantity;
+    }
+
+    public partial class ShoppingCart
+    {
+        public List<Item> Item = new List<Item>();
+
+        public void InsertItem(int id, string name ,  Nullable<double> unit_price, Nullable<double> promotion_price, string image, Nullable<byte> @new)
+        {
+            var obj = Item.Find(r=>r.id==id);
+            if(obj != null)
+            {
+                UpdateItem(id, 1);
+            }
+            else
+            {
+                Item.Add(new Models.Item() { id = id, name = name, unit_price = unit_price,promotion_price=promotion_price, image = image,@new=@new });
+                UpdateItem(id, 1);
+            }
+        }
+
+        public void UpdateItem(int id, int amount)
+        {
+            foreach (var i in Item)
+            {
+                if (i.id == id)
+                {
+                    i.quantity += amount;
+                }
+            }
+        }
+
+
+        public void RemoveItem(int id)
+        {
+            foreach(var i in Item)
+            {
+                if(i.id == id)
+                {
+                    Item.Remove(i);
+                }
+            }
+        }
+
+        public int TotalItem()
+        {
+            return Item.Count;
+        }
+    }
 }
