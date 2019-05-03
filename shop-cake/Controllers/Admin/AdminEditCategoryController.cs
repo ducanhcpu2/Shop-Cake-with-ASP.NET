@@ -1,4 +1,5 @@
-﻿using shop_cake.Models;
+﻿using Model.Framework;
+using shop_cake.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace shop_cake.Controllers.Admin
 {
     public class AdminEditCategoryController : Controller
     {
-        private shop_cakeEntities1 db = new shop_cakeEntities1();
+        private CakeshopDbContext db = new CakeshopDbContext();
         // GET: AdminEditCategory
         [HttpGet]
         public ActionResult Index(int id)
@@ -18,7 +19,7 @@ namespace shop_cake.Controllers.Admin
             return View();
         }
         [HttpPost]
-        public ActionResult Edit(product_types model)
+        public ActionResult Edit(Model.Framework.product_types model)
         {
             var obj = db.product_types.FirstOrDefault(x => x.id_product_type == model.id_product_type);
             obj.name = model.name;

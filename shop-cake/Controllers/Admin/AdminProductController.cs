@@ -1,4 +1,5 @@
-﻿using PagedList;
+﻿using Model.Framework;
+using PagedList;
 using shop_cake.Models;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace shop_cake.Controllers.Admin
     public class AdminProductController : Controller
     {
         // GET: AdminProduct
-        private shop_cakeEntities1 db = new shop_cakeEntities1();
+        private CakeshopDbContext db = new CakeshopDbContext();
         public ActionResult Index(int? page) 
         {
             var  products =

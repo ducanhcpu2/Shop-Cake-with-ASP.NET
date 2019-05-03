@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Mvc;
 using shop_cake.Models;
 using PagedList;
+using Model.Framework;
+
 namespace shop_cake.Controllers
 {
     //aaaa
@@ -21,7 +23,7 @@ namespace shop_cake.Controllers
    
     public class HomeController : Controller
     {
-        private shop_cakeEntities1 db = new shop_cakeEntities1();
+        private CakeshopDbContext db = new CakeshopDbContext();
         public async Task<ActionResult> Index()
         {
             var slides_from_db = await db.slides.ToListAsync();

@@ -3,7 +3,7 @@
     Layout = "";
 }
 
-
+@model shop_cake.Models.LoginAdminModel
 <!--A Design by W3layouts
    Author: W3layout
    Author URL: http://w3layouts.com
@@ -31,18 +31,23 @@
     <div class="mid-class">
         <div class="art-right-w3ls">
             <h2>Sign In and Sign Up</h2>
-            <form action="#" method="post">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, null, new { @class = "alert alert_danger"})
                 <div class="main">
                     <div class="form-left-to-w3l">
-                        <input type="text" name="name" placeholder="Username" required="">
+                        @Html.TextBoxFor(Model  => Model.Email,new { @type ="text", @placeholder = "Username" } )
+                        
                     </div>
                     <div class="form-left-to-w3l ">
-                        <input type="password" name="password" placeholder="Password" required="">
+                        @Html.TextBoxFor(Model => Model.Password, new { @type = "password", @placeholder = "Password" })
                         <div class="clear"></div>
                     </div>
                 </div>
                 <div class="left-side-forget">
-                    <input type="checkbox" class="checked">
+                    @Html.CheckBoxFor(Model=>Model.RememberMe)
+                    @*<input type="checkbox" class="checked">*@
                     <span class="remenber-me">Remember me </span>
                 </div>
                 <div class="right-side-forget">
@@ -52,7 +57,8 @@
                 <div class="btnn">
                     <button type="submit">Sign In</button>
                 </div>
-            </form>
+            }
+            @*<form action="#" method="post"></form>*@
             <div class="w3layouts_more-buttn">
                 <h3>
                     Don't Have an account..?

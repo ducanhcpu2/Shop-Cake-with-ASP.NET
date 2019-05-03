@@ -1,4 +1,5 @@
-﻿using shop_cake.Models;
+﻿using Model.Framework;
+using shop_cake.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace shop_cake.Controllers.Admin
     public class AdminListUsersController : Controller
     {
         // GET: AdminListUsers
-        private shop_cakeEntities1 db = new shop_cakeEntities1();
+        private CakeshopDbContext db = new CakeshopDbContext();
         public ActionResult Index()
         {
             ViewBag.Users = db.customers;

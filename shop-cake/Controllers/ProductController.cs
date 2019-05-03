@@ -1,4 +1,5 @@
-﻿using shop_cake.Models;
+﻿using Model.Framework;
+using shop_cake.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace shop_cake.Controllers
 {
     public class ProductController : Controller
     {
-        private shop_cakeEntities1 db = new shop_cakeEntities1();
+        private CakeshopDbContext db = new CakeshopDbContext();
         // GET: Product
         public ActionResult Product()
         {

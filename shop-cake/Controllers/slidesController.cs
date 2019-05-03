@@ -8,12 +8,13 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using shop_cake.Models;
+using Model.Framework;
 
 namespace shop_cake.Controllers
 {
     public class slidesController : Controller
     {
-        private shop_cakeEntities1 db = new shop_cakeEntities1();
+        private CakeshopDbContext db = new CakeshopDbContext();
 
         // GET: slides
         public async Task<ActionResult> Index()
