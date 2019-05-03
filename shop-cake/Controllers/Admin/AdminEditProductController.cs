@@ -34,13 +34,13 @@ namespace shop_cake.Controllers.Admin
             return View();
         }
         [HttpPost]
-        public ActionResult Edit(product_productType_ViewModel model)
+        public ActionResult Edit(product_productType_ViewModel model, System.Web.HttpPostedFileWrapper image)
         {
             var obj = db.products.FirstOrDefault(x => x.id_product == model.id_product);
             obj.name = model.product_name;
             obj.unit_price = model.unit_price;
             obj.promotion_price = model.promotion_price;
-            obj.image = model.image;
+            obj.image = image.FileName;
             obj.id_product_type = model.id_product_type;
             obj.@new = model.@new;
             obj.unit = model.unit;
