@@ -80,6 +80,17 @@ namespace shop_cake.Models
         }
 
 
+        public void UpdateNewQuantity(int id, int amount)
+        {
+            foreach (var i in Item)
+            {
+                if (i.id == id)
+                {
+                    i.quantity = amount;
+                }
+            }
+        }
+
         public void RemoveItem(int id)
         {
             foreach(var i in Item)
@@ -89,6 +100,23 @@ namespace shop_cake.Models
                     Item.Remove(i);
                 }
             }
+        }
+
+        public Nullable<double> TotalPrice()
+        {
+            Nullable<double> sum = 0;
+            foreach (var i in Item)
+            {
+                if(i.promotion_price > 0)
+                {
+                    sum += i.quantity * i.promotion_price;
+                }
+                else
+                {
+                    sum += i.quantity * i.unit_price;
+                }
+            }
+            return sum;
         }
 
         public int TotalItem()
