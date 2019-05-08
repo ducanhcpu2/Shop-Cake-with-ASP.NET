@@ -1,9 +1,22 @@
-﻿
+﻿@using shop_cake.Models;
 @{
     ViewBag.Title = "CheckOut";
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
 }
+@{
+    ShoppingCart cart = (ShoppingCart)Session["cart"];
+    List<Item> lst = new List<Item>();
+    bool yourBool = true;
+    if (cart == null)
+    {
+        cart = new ShoppingCart();
+        yourBool = false;
+    }
+    lst = cart.Item;
 
+
+    var count = cart.TotalItem();
+}
 <div class="inner-header">
     <div class="container">
         <div class="pull-left">
@@ -66,22 +79,32 @@
                             <div class="your-order-item">
                                 <div>
                                     <!--  one item	 -->
-                                    <div class="media">
-                                        <img width="25%" src="~/assets/dest/images/shoping1.jpg" alt="" class="pull-left">
+                                    @foreach(var item in lst.TakeWhile(x => yourBool))
+                                    {
+                                        <div class="media">
+                                        <img width="25%" src="~/image/product/@item.image" alt="" class="pull-left">
                                         <div class="media-body">
                                             <p class="font-large">Men's Belt</p>
-                                            <span class="color-gray your-order-info">Color: Red</span>
-                                            <span class="color-gray your-order-info">Size: M</span>
-                                            <span class="color-gray your-order-info">Qty: 1</span>
+                                            @if (item.@new > 0)
+                                            {
+                                                <span class="color-gray your-order-info" style="font-weight:bold">tình trạng: bánh mới</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="color-gray your-order-info" style="font-weight:bold">tình trạng: bánh cũ</span>
+                                            }
+                                            <span class="color-gray your-order-info" style="font-weight:bold">số lượng: @item.quantity</span>
                                         </div>
-                                    </div>
+                                        </div>
+                                    }
+                                    
                                     <!-- end one item -->
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="your-order-item">
                                 <div class="pull-left"><p class="your-order-f18">Tổng tiền:</p></div>
-                                <div class="pull-right"><h5 class="color-black">$235.00</h5></div>
+                                <div class="pull-right"><h5 class="color-black">@cart.TotalPrice() VND</h5></div>
                                 <div class="clearfix"></div>
                             </div>
                         </div>

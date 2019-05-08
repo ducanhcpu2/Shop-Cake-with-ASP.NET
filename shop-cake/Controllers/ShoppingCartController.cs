@@ -30,5 +30,21 @@ namespace shop_cake.Controllers
             Session["cart"] = cart;
             return Redirect(Request.UrlReferrer.ToString());
         }
+        [HttpPost]
+        public ActionResult Update(int[] id, int[] quantity)
+        {
+            ShoppingCart cart = (ShoppingCart)Session["cart"];
+            if(cart == null)
+            {
+                return Redirect(Request.UrlReferrer.ToString());
+            }
+            for(int i  = 0; i<= id.Length-1; i++)
+            {
+                cart.UpdateNewQuantity(id[i], quantity[i]);
+            }
+            
+            Session["cart"] = cart;
+            return Redirect(Request.UrlReferrer.ToString());
+        }
     }
 }
