@@ -33,6 +33,7 @@ namespace shop_cake.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<bill_detail> bill_detail { get; set; }
     }
+
     public partial class Item
     {
         public int id;
@@ -54,16 +55,16 @@ namespace shop_cake.Models
     {
         public List<Item> Item = new List<Item>();
 
-        public void InsertItem(int id, string name ,  Nullable<double> unit_price, Nullable<double> promotion_price, string image, Nullable<byte> @new)
+        public void InsertItem(int id, string name, Nullable<double> unit_price, Nullable<double> promotion_price, string image, Nullable<byte> @new)
         {
-            var obj = Item.Find(r=>r.id==id);
-            if(obj != null)
+            var obj = Item.Find(r => r.id == id);
+            if (obj != null)
             {
                 UpdateItem(id, 1);
             }
             else
             {
-                Item.Add(new Models.Item() { id = id, name = name, unit_price = unit_price,promotion_price=promotion_price, image = image,@new=@new });
+                Item.Add(new Models.Item() { id = id, name = name, unit_price = unit_price, promotion_price = promotion_price, image = image, @new = @new });
                 UpdateItem(id, 1);
             }
         }
@@ -93,9 +94,9 @@ namespace shop_cake.Models
 
         public void RemoveItem(int id)
         {
-            foreach(var i in Item)
+            foreach (var i in Item)
             {
-                if(i.id == id)
+                if (i.id == id)
                 {
                     Item.Remove(i);
                 }
@@ -107,7 +108,7 @@ namespace shop_cake.Models
             Nullable<double> sum = 0;
             foreach (var i in Item)
             {
-                if(i.promotion_price > 0)
+                if (i.promotion_price > 0)
                 {
                     sum += i.quantity * i.promotion_price;
                 }
