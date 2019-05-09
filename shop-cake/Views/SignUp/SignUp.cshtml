@@ -1,4 +1,5 @@
-﻿
+﻿@model shop_cake.Models.SignUpModel
+
 @{
     ViewBag.Title = "SignUp";
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
@@ -7,11 +8,11 @@
 <div class="inner-header">
     <div class="container">
         <div class="pull-left">
-            <h6 class="inner-title">Đăng kí</h6>
+            <h6 class="inner-title">Ðăng kí</h6>
         </div>
         <div class="pull-right">
             <div class="beta-breadcrumb">
-                <a href="index.html">Home</a> / <span>Đăng kí</span>
+                <a href="index.html">Home</a> / <span>Ðăng kí</span>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -20,49 +21,76 @@
 
 <div class="container">
     <div id="content">
+        @using (Html.BeginForm("SignUp", "SignUp", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            
+                <div class="row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6">
+                        <h4>Ðăng kí</h4>
+                        <div class="space20">&nbsp;</div>
+                        @*<div class="form-block">
+                            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                        </div>*@
+                        
 
-        <form action="#" method="post" class="beta-form-checkout">
-            <div class="row">
-                <div class="col-sm-3"></div>
-                <div class="col-sm-6">
-                    <h4>Đăng kí</h4>
-                    <div class="space20">&nbsp;</div>
+                        <div class="form-block">
+                            @*<label for="email">Email address*</label>*@
+                            @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+                            
+                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                               @* <input type="email" id="email" required>*@
+                            </div>
+
+                        <div class="form-block">
+                            @*<label for="your_last_name">Fullname*</label>*@
+                            @Html.LabelFor(model => model.FullName, new { @class = "control-label col-md-2" })
+
+                            @Html.TextBoxFor(model => model.FullName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-block">
+                            @*<label for="adress">Address*</label>*@
+                            @Html.LabelFor(model => model.Address, new { @class = "control-label col-md-2" })
+
+                            @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                        </div>
 
 
-                    <div class="form-block">
-                        <label for="email">Email address*</label>
-                        <input type="email" id="email" required>
-                    </div>
+                        <div class="form-block">
+                            @*<label for="phone">Phone*</label>*@
+                            @Html.LabelFor(model => model.Phone, new { @class = "control-label col-md-2" })
 
-                    <div class="form-block">
-                        <label for="your_last_name">Fullname*</label>
-                        <input type="text" id="your_last_name" required>
-                    </div>
+                            @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-block">
+                            @*<label for="phone">Password*</label>*@
+                            @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
 
-                    <div class="form-block">
-                        <label for="adress">Address*</label>
-                        <input type="text" id="adress" value="Street Address" required>
-                    </div>
+                            @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-block">
+                            @*<label for="phone">Re password*</label>*@
+                            @Html.LabelFor(model => model.ConfirmPassword, new { @class = "control-label col-md-2" })
 
-
-                    <div class="form-block">
-                        <label for="phone">Phone*</label>
-                        <input type="text" id="phone" required>
-                    </div>
-                    <div class="form-block">
-                        <label for="phone">Password*</label>
-                        <input type="text" id="phone" required>
-                    </div>
-                    <div class="form-block">
-                        <label for="phone">Re password*</label>
-                        <input type="text" id="phone" required>
-                    </div>
-                    <div class="form-block">
-                        <button type="submit" class="btn btn-primary">Register</button>
-                    </div>
+                            @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                        </div>
+                            <div class="form-block">
+                                <button type="submit" class="btn btn-primary">Register</button>
+                            </div>
+                        </div>
+                    <div class="col-sm-3"></div>
                 </div>
-                <div class="col-sm-3"></div>
-            </div>
-        </form>
+            
+
+        }
+
     </div> <!-- #content -->
 </div> <!-- .container -->
