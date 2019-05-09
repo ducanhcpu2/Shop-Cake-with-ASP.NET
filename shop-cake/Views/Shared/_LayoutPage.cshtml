@@ -68,20 +68,18 @@
                         </form>
 
                     </div>
-                    <a href="@Url.Action("ShoppingCart","ShoppingCart")">
-                        <div class="beta-comp">
-                            <div class="cart">
-                                <div class="beta-select">
-                                    <i class="fa fa-shopping-cart"></i>
-                                    Giỏ hàng @if (cart != null)
-                                    {@cart.TotalItem() }
-                                else
-                                {@(0)}  sản phẩm
-                                </div>
-
+                    <div class="beta-comp"  >
+                        <div class="cart">
+                            <div class="beta-select" id="shop_cart">
+                                <i class="fa fa-shopping-cart"></i>
+                                Giỏ hàng @if (cart != null)
+                                {@cart.TotalItem() }
+                            else
+                            {@(0)}  sản phẩm
                             </div>
+
                         </div>
-                    </a>
+                    </div>
                     
                      <!-- .cart -->
                 </div>
@@ -97,12 +95,12 @@
                     <ul class="l-inline ov">
                         <li><a href="@Url.Action(actionName:"Index",controllerName:"Home")">Trang chủ</a></li>
                         <li>
-                            <a href="@Url.Action(actionName:"Product",controllerName:"Product")">Sản phẩm</a>
-                            <ul class="sub-menu">
+                            <a href="@Url.Action(actionName:"ProductType",controllerName:"ProductType")">Loai Sản phẩm</a>
+                            @*<ul class="sub-menu">
                                 <li><a href="product_type.html">Sản phẩm 1</a></li>
                                 <li><a href="product_type.html">Sản phẩm 2</a></li>
                                 <li><a href="product_type.html">Sản phẩm 4</a></li>
-                            </ul>
+                            </ul>*@
                         </li>
                         <li><a href="@Url.Action(actionName:"About",controllerName:"Home")">Giới thiệu</a></li>
                         <li><a href="@Url.Action(actionName:"Contact",controllerName:"Home")">Liên hệ</a></li>
@@ -217,6 +215,13 @@
                 window.location = url;
             }
         });
+
+
+        $("#shop_cart").click(function () {
+            var url = "/ShoppingCart/ShoppingCart";
+            window.location = url;
+        });
+
     </script>
 </body>
 </html>

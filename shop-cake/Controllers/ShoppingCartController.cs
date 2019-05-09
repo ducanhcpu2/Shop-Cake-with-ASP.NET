@@ -19,6 +19,11 @@ namespace shop_cake.Controllers
         [HttpPost]
         public ActionResult Add()
         {
+            customer user = (customer)Session["user"];
+            if (user == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             int id = Convert.ToInt32(Request.Form["id"]);
             ShoppingCart cart = (ShoppingCart)Session["cart"];
             if (cart == null)

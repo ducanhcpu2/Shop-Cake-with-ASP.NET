@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
 }
 @{
+   
     ShoppingCart cart = (ShoppingCart)Session["cart"];
     List<Item> lst = new List<Item>();
     bool yourBool = true;
