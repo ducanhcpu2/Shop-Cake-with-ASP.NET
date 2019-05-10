@@ -1,8 +1,12 @@
-﻿@using shop_cake.Models;
+
+@*@model PagedList.IPagedList<shop_cake.Models.product>*@
+
+@using shop_cake.Models;
 @{
     customer user = (customer)Session["user"];
     ShoppingCart cart = (ShoppingCart)Session["cart"];
 }
+
 <!DOCTYPE html>
 
 
