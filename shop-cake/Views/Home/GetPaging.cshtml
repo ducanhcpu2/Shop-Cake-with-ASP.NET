@@ -1,8 +1,11 @@
 ﻿@model PagedList.IPagedList<shop_cake.Models.product>
+@using shop_cake.Models;
 
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" />
-
+@{ 
+    customer user = (customer)Session["user"];
+}
 <div class="row" id="area">
     @foreach (var item in Model)
     {

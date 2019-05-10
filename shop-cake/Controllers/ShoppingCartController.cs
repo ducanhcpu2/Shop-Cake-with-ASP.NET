@@ -19,6 +19,11 @@ namespace shop_cake.Controllers
         [HttpPost]
         public ActionResult Add()
         {
+            customer user = (customer)Session["user"];
+            if (user == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             int id = Convert.ToInt32(Request.Form["id"]);
             ShoppingCart cart = (ShoppingCart)Session["cart"];
             if (cart == null)
@@ -27,6 +32,22 @@ namespace shop_cake.Controllers
             }
             var obj = db.products.Find(id);
             cart.InsertItem(obj.id_product, obj.name, obj.unit_price,obj.promotion_price,obj.image,obj.@new);
+            Session["cart"] = cart;
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+        [HttpPost]
+        public ActionResult Update(int[] id, int[] quantity)
+        {
+            ShoppingCart cart = (ShoppingCart)Session["cart"];
+            if(cart == null)
+            {
+                return Redirect(Request.UrlReferrer.ToString());
+            }
+            for(int i  = 0; i<= id.Length-1; i++)
+            {
+                cart.UpdateNewQuantity(id[i], quantity[i]);
+            }
+            
             Session["cart"] = cart;
             return Redirect(Request.UrlReferrer.ToString());
         }
