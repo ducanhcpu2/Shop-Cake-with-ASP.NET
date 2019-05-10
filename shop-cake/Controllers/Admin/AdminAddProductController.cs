@@ -24,8 +24,11 @@ namespace shop_cake.Controllers.Admin
             {
                 db.products.Add(new product { name = model.product_name, unit_price = model.unit_price , promotion_price=model.promotion_price
                     ,image= image.FileName,
-                    @new=model.@new,unit=model.unit,description=model.description,id_product_type=model.id_product_type
-                });
+                    @new=model.@new,unit=model.unit,description=model.description,id_product_type=model.id_product_type,
+                    created_at =  System.DateTime.Now,
+                    updated_at = System.DateTime.Now
+            });
+                image.SaveAs(Server.MapPath(Path.Combine("~/image/product/", image.FileName)));
                 db.SaveChanges();
                 return RedirectToAction(actionName: "Index", controllerName:"AdminProduct");
             }
