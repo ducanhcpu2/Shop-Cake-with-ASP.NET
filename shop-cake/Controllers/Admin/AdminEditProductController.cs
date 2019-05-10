@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -44,6 +45,9 @@ namespace shop_cake.Controllers.Admin
             obj.id_product_type = model.id_product_type;
             obj.@new = model.@new;
             obj.unit = model.unit;
+            
+            obj.updated_at = System.DateTime.Now; 
+            image.SaveAs(Server.MapPath(Path.Combine("~/image/product/", image.FileName)));
             db.Entry(obj).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index","AdminProduct");
