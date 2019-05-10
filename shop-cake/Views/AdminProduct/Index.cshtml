@@ -1,7 +1,15 @@
 ﻿@model PagedList.IPagedList<shop_cake.Models.product_productType_ViewModel>
+@using shop_cake.Models;
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
+    admin ad = (admin)Session["admin"];
+    if (ad == null)
+    {
+        <script>
+            window.location.href = "/AdminLogin/Index";
+        </script>
+    }
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/LayoutAdmin.cshtml";
 }
@@ -21,6 +29,8 @@
                     <div class="bootstrap-table">
                         <div class="table-responsive" id="abc">
                             <a href="@Url.Action(actionName:"Index",controllerName:"AdminAddProduct")" class="btn btn-primary">Thêm sản phẩm</a>
+                            <div>Tổng số sản phẩm : @ViewBag.Total</div>
+
                             <table class="table table-bordered" style="margin-top:20px;">
                                 <thead>
                                     <tr class="bg-primary">
@@ -57,7 +67,7 @@
                                         </tbody>
                                     </form>
                                 }
-
+                                <br />
                                 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
                                 @Html.PagedListPager(Model, page => Url.Action("Index","AdminProduct",

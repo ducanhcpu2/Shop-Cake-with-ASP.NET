@@ -28,6 +28,7 @@ namespace shop_cake.Controllers.Admin
             int pageSize = 4;
             int pageNumber = (page ?? 1);
             ViewBag.List = products;
+            ViewBag.Total = products.Count();
             return View(products.ToPagedList(pageNumber, pageSize));
         }
         //public PartialViewResult ProductPaging()
