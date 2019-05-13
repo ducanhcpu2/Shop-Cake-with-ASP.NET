@@ -1,4 +1,4 @@
-
+﻿
 @*@model PagedList.IPagedList<shop_cake.Models.product>*@
 
 @using shop_cake.Models;
@@ -51,6 +51,7 @@
                             <li><a href="@Url.Action(actionName:"Login",controllerName:"Login")"><i class="fa fa-user"></i>Tài khoản</a></li>
 
                         }
+                        <li><a href="@Url.Action(actionName:"Logout",controllerName:"Login")">Thoát</a></li>
                         <li><a href="@Url.Action(actionName:"SignUp",controllerName:"SignUp")">Đăng kí</a></li>
                         <li><a href="@Url.Action(actionName:"Login",controllerName:"Login")">Đăng nhập</a></li>
                     </ul>
