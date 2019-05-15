@@ -40,5 +40,12 @@ namespace shop_cake.Controllers
             }
             return Redirect(Request.UrlReferrer.ToString());
         }
+        public ActionResult Logout()
+        {
+            Session["user"] = null;
+            Session["cart"] = null;
+            return Redirect("/");
+        }
+
     }
 }
