@@ -38,5 +38,6 @@ namespace shop_cake.Controllers.Admin
                 return Json(new { status = false, message = "Invalid Email!" });
             }
         }
+        
     }
 }
