@@ -43,5 +43,11 @@ namespace shop_cake.Controllers.Admin
                 return Redirect(Request.UrlReferrer.ToString());
             }
         }
+        public ActionResult LogoutAdmin()
+        {
+            Session["admin"] = null;
+
+            return RedirectToAction("Index", "AdminLogin");
+        }
     }
 }
