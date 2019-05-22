@@ -11,7 +11,9 @@ namespace shop_cake.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class bill
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -49,6 +51,22 @@ namespace shop_cake.Models
         public int id_product_type;
 
         public int quantity;
+    }
+
+    public partial class bill_customerViewModel
+    {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int id_bill { get; set; }
+        [Key]
+
+        public Nullable<System.DateTime> date_order { get; set; }
+        public Nullable<double> total { get; set; }
+        public string payment { get; set; }
+        public string note { get; set; }
+        public Nullable<System.DateTime> created_at { get; set; }
+        public Nullable<System.DateTime> updated_at { get; set; }
+        public string namecustomer { get; set; }
+        public string emailcustomer { get; set; }
     }
 
     public partial class ShoppingCart
