@@ -28,7 +28,10 @@
                 <div class="panel-body">
                     <div class="bootstrap-table">
                         <div class="table-responsive" id="abc">
-                            <a href="@Url.Action(actionName:"Index",controllerName:"AdminAddProduct")" class="btn btn-primary">Thêm sản phẩm</a>
+                            <div>
+                                <a href="@Url.Action(actionName:"Index",controllerName:"AdminAddProduct")" class="btn btn-primary">Thêm sản phẩm</a>
+                            </div>
+                            <br />
                             <div>Tổng số sản phẩm : @ViewBag.Total</div>
 
                             <table class="table table-bordered" style="margin-top:20px;">
@@ -67,13 +70,13 @@
                                         </tbody>
                                     </form>
                                 }
-                                <br />
-                                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-                                @Html.PagedListPager(Model, page => Url.Action("Index","AdminProduct",
-                                    new { page })
-                                    , PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "abc" }))
                             </table>
+                            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+                            @Html.PagedListPager(Model, page => Url.Action("Index","AdminProduct",
+                                new { page })
+                                , PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "abc" }))
                         </div>
                     </div>
                     <div class="clearfix"></div>
