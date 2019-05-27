@@ -1,12 +1,19 @@
-﻿@model PagedList.IPagedList<shop_cake.Models.product>
-@using shop_cake.Models;
-
+﻿@using shop_cake.Models;
+@model PagedList.IPagedList<shop_cake.Models.product>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" />
-@{ 
-    customer user = (customer)Session["user"];
+@{
+                /**/
+
+                customer user = (customer)Session["user"];
 }
+<h4>New Products</h4>
+<div class="beta-products-details">
+    <p class="pull-left">tìm thấy @ViewBag.totalItem sản phẩm</p>
+    <div class="clearfix"></div>
+</div>
 <div class="row" id="area">
+
     @foreach (var item in Model)
     {
         <div class="col-sm-3">
@@ -17,15 +24,22 @@
                     <a href="product.html"><img src="~/image/product/@item.image" alt="" style="height:290px;width:270px "></a>
                 </div>
                 <div class="single-item-body">
-                    <p class="single-item-title">Sample Woman Top</p>
+                    <p class="single-item-title">@item.name</p>
                     <p class="single-item-price">
-                        <span class="flash-del">$34.55</span>
-                        <span class="flash-sale">$33.55</span>
+                        @if (item.promotion_price > 0)
+                        {
+                            <span class="flash-del">@item.unit_price</span>
+                            <span class="flash-sale">@item.promotion_price</span>
+                        }
+                        else
+                        {
+                            <span>@item.unit_price</span>
+                        }
                     </p>
                 </div>
                 <div class="single-item-caption">
                     <form method="post" action="@Url.Action("Add","ShoppingCart")">
-                        <input style="display:none" value="@item.id_product" name="id"/>
+                        <input style="display:none" value="@item.id_product" name="id" />
                         <button class="add-to-cart pull-left " type="submit"><i class="fa fa-shopping-cart"></i></button>
                         @*<input class="add-to-cart pull-left " type="submit"/>*@
                         @*<p class="add-to-cart pull-left"><i class="fa fa-shopping-cart"></i></p>*@
@@ -40,9 +54,15 @@
 </div>
 
 <br />
-        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-        @Html.PagedListPager(Model
-                            , Page_No =>Url.Action("Index","Home"
-                            , new { Page_No })
-                            ,PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod="GET", UpdateTargetId ="area"})
-                            )
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model
+                        , Page_No =>Url.Action("Index","Home"
+                        , new { Page_No })
+                        ,PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod="GET", UpdateTargetId ="area"})
+                        )
+
+
+    @*count = count + 1;
+        if (count % 4 == 0)
+        {
+        <div class="space40">&nbsp;</div>*@
