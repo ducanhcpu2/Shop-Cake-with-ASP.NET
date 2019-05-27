@@ -1,0 +1,13 @@
+﻿@model  IEnumerable<shop_cake.Models.product_types>
+@using shop_cake.Models;
+
+<div class="col-sm-3">
+
+    <ul class="aside-menu">
+        @foreach (var item in Model)
+        {
+            <li id="idProductType"><a href="@Url.Action("ProductType","ProductType",new { a = item.id_product_type})">@item.name</a></li>
+        }
+
+    </ul>
+</div>

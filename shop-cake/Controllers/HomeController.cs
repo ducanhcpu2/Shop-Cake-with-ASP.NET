@@ -39,42 +39,42 @@ namespace shop_cake.Controllers
             ViewBag.AllSlide = slide;
             //end display slides
             
-            return View();
+            return View(db.products);
         }
-        //public ActionResult GetPaging(string currentFilter, string searchString, int? Page_No)
-        //{
-        //    var product = db.products;
-        //    //start search
-        //    if (searchString != null)
-        //    {
-        //        Page_No = 1;
-        //    }
-        //    else
-        //    {
-        //        searchString = currentFilter;
-        //    }
+        public ActionResult getAllProduct(string current, string search, int? No)
+        {
+            var product = db.products;
+            //start search
+            if (search != null)
+            {
+                No = 1;
+            }
+            else
+            {
+                search = current;
+            }
 
-        //    ViewBag.CurrentFilter = searchString;
+            ViewBag.CurrentFilter = search;
 
-        //    var products = from s in product
-        //                   select s;
-        //    if (!String.IsNullOrEmpty(searchString))
-        //    {
-        //        products = products.Where(s => s.name.Contains(searchString));
+            var products = from s in product
+                           select s;
+            if (!String.IsNullOrEmpty(search))
+            {
+                products = products.Where(s => s.name.Contains(search));
 
-        //    }
-        //    //end search
+            }
+            //end search
 
-        //    //paginate
-
-        //    int Size_Of_Page = 4;
-        //    int No_Of_Page = (Page_No ?? 1);
-        //    return PartialView("GetPaging", products.OrderBy(i => i.id_product).ToPagedList(No_Of_Page, Size_Of_Page));
-        //}
-        public PartialViewResult GetPaging(string currentFilter, string searchString, int? Page_No)
+            //paginate
+            ViewBag.totalItem = product.Count();
+            int Size_Of_Page = 8;
+            int No_Of_Page = (No ?? 1);
+            return PartialView("getAllProduct", products.OrderBy(i => i.id_product).ToPagedList(No_Of_Page, Size_Of_Page));
+        }
+        public ActionResult GetPaging(string currentFilter, string searchString, int? Page_No)
         {
 
-            var product = db.products;
+            var product = db.products.Where(s=>s.@new==1);
             //start search
             if (searchString != null)
             {
@@ -97,7 +97,7 @@ namespace shop_cake.Controllers
             //end search
 
             //paginate
-
+            ViewBag.totalItem = product.Count();
             int Size_Of_Page = 4;
             int No_Of_Page = (Page_No ?? 1);
             return PartialView("GetPaging", products.OrderBy(i => i.id_product).ToPagedList(No_Of_Page, Size_Of_Page));
