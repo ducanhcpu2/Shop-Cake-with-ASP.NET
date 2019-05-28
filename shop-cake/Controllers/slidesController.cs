@@ -13,7 +13,7 @@ namespace shop_cake.Controllers
 {
     public class slidesController : Controller
     {
-        private shop_cakeEntities db = new shop_cakeEntities();
+        private shop_cakeEntities1 db = new shop_cakeEntities1();
 
         // GET: slides
         public async Task<ActionResult> Index()

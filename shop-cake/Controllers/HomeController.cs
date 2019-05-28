@@ -8,30 +8,26 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using shop_cake.Models;
-
+using PagedList;
 namespace shop_cake.Controllers
 {
+    //aaaa
     public class Slides
     {
         public int id_slide;
         public string link;
         public string image;
     }
+   
     public class HomeController : Controller
     {
-        private shop_cakeEntities db = new shop_cakeEntities();
-
-        //public actionresult index()
-        //{
-
-        //    return view();
-        //}
-
+        private shop_cakeEntities1 db = new shop_cakeEntities1();
         public async Task<ActionResult> Index()
         {
             var slides_from_db = await db.slides.ToListAsync();
 
-            var product = await db.products.ToListAsync();
+            
+            //start display slides
             List<Slides> slide = new List<Slides>();
             var slidesObject = from b in slides_from_db select new {id_slide= b.id_slide,link=b.link,image=b.image};
             foreach(var item in slidesObject)
@@ -41,7 +37,69 @@ namespace shop_cake.Controllers
             }
             ViewBag.TotalSlides = slide.Count();
             ViewBag.AllSlide = slide;
-            return View();
+            //end display slides
+            
+            return View(db.products);
+        }
+        public ActionResult getAllProduct(string current, string search, int? No)
+        {
+            var product = db.products;
+            //start search
+            if (search != null)
+            {
+                No = 1;
+            }
+            else
+            {
+                search = current;
+            }
+
+            ViewBag.current = search;
+
+            var products = from s in product
+                           select s;
+            if (!String.IsNullOrEmpty(search))
+            {
+                products = products.Where(s => s.name.Contains(search));
+
+            }
+            //end search
+
+            //paginate
+            ViewBag.totalItem = product.Count();
+            int Size_Of_Page = 8;
+            int No_Of_Page = (No ?? 1);
+            return PartialView("getAllProduct", products.OrderBy(i => i.id_product).ToPagedList(No_Of_Page, Size_Of_Page));
+        }
+        public ActionResult GetPaging(string currentFilter, string searchString, int? Page_No)
+        {
+
+            var product = db.products.Where(s=>s.@new==1);
+            //start search
+            if (searchString != null)
+            {
+                Page_No = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var products = from s in product
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                products = products.Where(s => s.name.Contains(searchString));
+
+            }
+            //end search
+            //paginate
+            ViewBag.totalItem = product.Count();
+            int Size_Of_Page = 4;
+            int No_Of_Page = (Page_No ?? 1);
+            return PartialView("GetPaging", products.OrderBy(i => i.id_product).ToPagedList(No_Of_Page, Size_Of_Page));
         }
 
         public ActionResult About()
