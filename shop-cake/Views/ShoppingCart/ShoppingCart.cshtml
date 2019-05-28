@@ -18,6 +18,7 @@
 
     var count = cart.TotalItem();
 }
+
 <div class="inner-header">
     <div class="container">
         <div class="pull-left">
@@ -59,7 +60,6 @@
                                         <div class="media-body">
                                             <p class="font-large table-title" style="font-weight:bold">@item.name</p>
                                             @*<p class="table-option">Color: Red</p>*@
-                                            <a class="table-edit" href="#">Edit</a>
                                         </div>
                                     </div>
                                 </td>
@@ -112,7 +112,9 @@
                                 </td>
 
                                 <td class="product-remove">
-                                    <a href="#" class="remove" title="Remove this item"><i class="fa fa-trash-o"></i></a>
+                                    @*<input value="@item.id" name="DeleteID" style="display:none" />
+                                    <button onclick="DeleteRequest(@item.id)" id="DeleteRequest"><i class="fa fa-trash-o"></i></button>*@
+                                    <a class="remove" title="Remove this item" onclick="DeleteRequest(@item.id)"><i class="fa fa-trash-o"></i></a>
                                 </td>
                             </tr>
                         </tbody>
@@ -424,3 +426,35 @@
 </div> <!-- .container -->
 
 
+<script>
+    function DeleteRequest(abc) {
+        var ps = parseInt(abc);
+        jQuery.ajax({
+            url: "/ShoppingCart/Delete",
+            data: { "id": ps },
+            type: 'POST',
+            success: function (response) {
+               window.location = "/ShoppingCart/ShoppingCart";
+            }
+        });
+
+        //$("#DeleteRequest").click(function () {
+        //    var url = "/ShoppingCart/Delete";
+        //    var name = $('#DeleteID').val();
+        //    window.location = url;
+        //});
+        //pData = { id: id };
+        //request.put("POST", "/ShoppingCart/Delete", pData, function (Response) {
+        //    if (Response == true) {
+        //        setTimeout(function () {
+        //            window.location.href = "/IpBill/showIpBills";
+        //        }, 5000);
+        //    }
+        //    else {
+        //        alert("delete fail");
+        //    }
+        //}, function () { }, function () { });
+    }
+
+    
+</script>

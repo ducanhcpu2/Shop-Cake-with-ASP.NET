@@ -7,10 +7,18 @@
 @{
     customer user = (customer)Session["user"];
     int count = 0;
-}
+} 
 <h4>All Products</h4>
 <div class="beta-products-details">
     <p class="pull-left">tìm thấy @ViewBag.totalItem sản phẩm</p>
+    <div style="margin-left:800px">
+        <div class="beta-comp" style="margin-left:100px">
+            <form role="search" method="get" id="searchform" action="/Home/Index">
+                <input type="text" value="@ViewBag.current" name="search" id="s" placeholder="Nhập từ khóa..." />
+                <button class="fa fa-search" type="submit" id="searchsubmit"></button>
+            </form>
+        </div>
+    </div>
     <div class="clearfix"></div>
 </div>
 <div class="row" id="area">
@@ -61,7 +69,7 @@
         Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
         @Html.PagedListPager(Model
                             , No =>Url.Action("Index","Home"
-                            , new { No })
+                            , new { No, current = ViewBag.current })
                             ,PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod="GET", UpdateTargetId ="area"})
                             )
 
