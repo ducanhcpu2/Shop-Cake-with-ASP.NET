@@ -112,13 +112,16 @@ namespace shop_cake.Models
 
         public void RemoveItem(int id)
         {
-            foreach (var i in Item)
-            {
-                if (i.id == id)
-                {
-                    Item.Remove(i);
-                }
-            }
+            //foreach (var i in Item)
+            //{
+            //    if (i.id == id)
+            //    {
+            //        Item.Remove(i);
+            //    }
+            //}
+
+            var a = Item.Find(r=>r.id == id);
+            Item.Remove(a);
         }
 
         public Nullable<double> TotalPrice()
