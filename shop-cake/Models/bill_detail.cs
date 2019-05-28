@@ -11,7 +11,9 @@ namespace shop_cake.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class bill_detail
     {
         public int id_bill_detail { get; set; }
@@ -24,5 +26,20 @@ namespace shop_cake.Models
     
         public virtual bill bill { get; set; }
         public virtual product product { get; set; }
+    }
+    public partial class bill_detailViewModel
+    {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int id_bill_detail { get; set; }
+        [Key]
+      
+        public Nullable<int> quatity { get; set; }
+        public Nullable<double> unit_price { get; set; }
+        public Nullable<int> id_bill { get; set; }
+        public Nullable<System.DateTime> created_at { get; set; }
+        public Nullable<System.DateTime> updated_at { get; set; }
+        public Nullable<int> id_product { get; set; }
+        public string nameproduct { get; set; }
+        public string imageproduct { get; set; }
     }
 }
