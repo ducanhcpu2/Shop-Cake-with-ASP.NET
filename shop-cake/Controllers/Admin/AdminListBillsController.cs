@@ -53,7 +53,7 @@ namespace shop_cake.Controllers.Admin
             bill.ToList();
             return View(bill.OrderBy(i => i.id_bill).ToPagedList(No_Of_Page, Size_Of_Page));
         }
-        public ActionResult BillDetail()
+        public ActionResult BillDetail(int id_bill)
         {
             var billdetail = (
                 from bd in db.bill_detail
@@ -63,6 +63,7 @@ namespace shop_cake.Controllers.Admin
                 join
                 b in db.bills
                 on bd.id_bill equals b.id_bill
+                where b.id_bill==id_bill
                 select new bill_detailViewModel()
                 {
                     id_bill_detail = bd.id_bill_detail,

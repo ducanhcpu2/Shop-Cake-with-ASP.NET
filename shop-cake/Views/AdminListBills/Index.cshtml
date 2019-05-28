@@ -42,7 +42,7 @@
                     <td>@item.note</td>
                     <td><a href="#">@item.created_at</a></td>
                     <td><a href="#">@item.updated_at</a></td>
-                    <td><a href="@Url.Action("BillDetail","AdminListBills")">Detail</a></td>
+                    <td><a href="@Url.Action("BillDetail","AdminListBills",new { id_bill = item.id_bill})">Detail</a></td>
                 </tr>
                 }
 
