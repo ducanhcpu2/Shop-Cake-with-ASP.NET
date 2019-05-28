@@ -51,5 +51,13 @@ namespace shop_cake.Controllers
             Session["cart"] = cart;
             return Redirect(Request.UrlReferrer.ToString());
         }
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            ShoppingCart cart = (ShoppingCart)Session["cart"];
+            cart.RemoveItem(id);
+
+            return Redirect(Request.UrlReferrer.ToString());
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using shop_cake.Models;
+﻿using PagedList;
+using shop_cake.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,19 @@ namespace shop_cake.Controllers.Admin
     {
         // GET: AdminListBills
         private shop_cakeEntities1 db = new shop_cakeEntities1();
-        public ActionResult Index()
+        public ActionResult Index(string currentFilter, string searchString, int? Page_No)
         {
+            if (searchString != null)
+            {
+                Page_No = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
             var bill = (
                 from b in db.bills
                 join
@@ -29,10 +41,17 @@ namespace shop_cake.Controllers.Admin
                     updated_at = b.updated_at,
                     namecustomer = c.name,
                     emailcustomer = c.email
-                }).ToList();
+                });
             ViewBag.Bills = bill;
-                
-            return View();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                bill = bill.Where(u => u.namecustomer.Contains(searchString));
+            }
+            int Size_Of_Page = 10;
+            int No_Of_Page = (Page_No ?? 1);
+            bill.ToList();
+            return View(bill.OrderBy(i => i.id_bill).ToPagedList(No_Of_Page, Size_Of_Page));
         }
         public ActionResult BillDetail()
         {

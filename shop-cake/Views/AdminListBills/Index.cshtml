@@ -1,4 +1,6 @@
 ﻿@using shop_cake.Models
+@model PagedList.IPagedList<shop_cake.Models.bill_customerViewModel>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/LayoutAdmin.cshtml";
@@ -28,7 +30,7 @@
                     <td width="12%">Updated at</td>
                     <td width="8%">Detail</td>
                 </tr>
-                @foreach (var item in ViewBag.Bills)
+                @foreach (var item in Model)
                 {
                 <tr>
                     <td>@item.id_bill</td>
@@ -43,7 +45,17 @@
                     <td><a href="@Url.Action("BillDetail","AdminListBills")">Detail</a></td>
                 </tr>
                 }
+
             </table>
+
+
+
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+            @Html.PagedListPager(Model
+                         , Page_No => Url.Action("Index", "AdminListBills"
+                         , new { Page_No, currentFilter = ViewBag.CurrentFilter })
+                         , PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "area" })
+                         )
         </div>
     </div>
 </div>

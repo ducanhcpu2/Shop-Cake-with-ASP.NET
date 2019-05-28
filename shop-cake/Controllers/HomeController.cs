@@ -54,7 +54,7 @@ namespace shop_cake.Controllers
                 search = current;
             }
 
-            ViewBag.CurrentFilter = search;
+            ViewBag.current = search;
 
             var products = from s in product
                            select s;
@@ -95,7 +95,6 @@ namespace shop_cake.Controllers
 
             }
             //end search
-
             //paginate
             ViewBag.totalItem = product.Count();
             int Size_Of_Page = 4;
