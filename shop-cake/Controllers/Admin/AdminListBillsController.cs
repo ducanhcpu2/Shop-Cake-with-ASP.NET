@@ -53,5 +53,32 @@ namespace shop_cake.Controllers.Admin
             bill.ToList();
             return View(bill.OrderBy(i => i.id_bill).ToPagedList(No_Of_Page, Size_Of_Page));
         }
+        public ActionResult BillDetail()
+        {
+            var billdetail = (
+                from bd in db.bill_detail
+                join
+                p in db.products
+                on bd.id_product equals p.id_product 
+                join
+                b in db.bills
+                on bd.id_bill equals b.id_bill
+                select new bill_detailViewModel()
+                {
+                    id_bill_detail = bd.id_bill_detail,
+                    nameproduct=p.name,
+                    quatity = bd.quantity,
+                    unit_price = bd.unit_price,
+                    id_bill = b.id_bill,
+                    created_at = b.created_at,
+                    updated_at = b.updated_at,
+                    imageproduct = p.image
+                    
+                }).ToList();
+            ViewBag.BillDetail = billdetail;
+
+            return View();
+        }
+
     }
 }

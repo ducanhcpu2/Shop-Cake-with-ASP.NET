@@ -23,25 +23,27 @@
                     <td width="10%">Date order</td>
                     <td width="6%">Total</td>
                     <td width="3%">Payment</td>
-                    <td width="14%">Name customer</td>
-                    <td width="14%">Email customer</td>
-                    <td width="18%">Note</td>
+                    <td width="13%">Name customer</td>
+                    <td width="13%">Email customer</td>
+                    <td width="15%">Note</td>
                     <td width="12%">Created at</td>
                     <td width="12%">Updated at</td>
+                    <td width="8%">Detail</td>
                 </tr>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>@item.id_bill</td>
-                        <td>@item.date_order</td>
-                        <td>@item.total</td>
-                        <td>@item.payment</td>
-                        <td>@item.namecustomer</td>
-                        <td>@item.emailcustomer</td>
-                        <td>@item.note</td>
-                        <td><a href="#">@item.created_at</a></td>
-                        <td><a href="#">@item.updated_at</a></td>
-                    </tr>
+                <tr>
+                    <td>@item.id_bill</td>
+                    <td>@item.date_order</td>
+                    <td>@item.total</td>
+                    <td>@item.payment</td>
+                    <td>@item.namecustomer</td>
+                    <td>@item.emailcustomer</td>
+                    <td>@item.note</td>
+                    <td><a href="#">@item.created_at</a></td>
+                    <td><a href="#">@item.updated_at</a></td>
+                    <td><a href="@Url.Action("BillDetail","AdminListBills")">Detail</a></td>
+                </tr>
                 }
 
             </table>

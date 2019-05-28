@@ -17,7 +17,8 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress>false</Use64BitIISExpress>
+    <Use64BitIISExpress>
+    </Use64BitIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -3136,6 +3137,7 @@
     <Content Include="Views\Home\getAllProduct.cshtml" />
     <Content Include="Views\ProductType\ListProductType.cshtml" />
     <Content Include="Views\ProductType\ListProduct.cshtml" />
+    <Content Include="Views\AdminListBills\BillDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
