@@ -1,0 +1,47 @@
+﻿@using shop_cake.Models
+@{
+                /**/
+
+                ViewBag.Title = "BillDetail";
+                Layout = "~/Views/Shared/LayoutAdmin.cshtml";
+                admin ad = (admin)Session["admin"];
+}
+@if (ad == null)
+{
+    <script>
+        window.location.href = "/AdminLogin/Index";
+    </script>
+}
+    <div class="container" style=" width:990px">
+        <div class="row">
+            <div class="col-sm-12" style="width:1250px">
+                @*<div class="alert alert-success">Added user success!</div>*@
+                <table class="table table-striped">
+                    <tr id="tbl-first-row">
+                        <td width="5%">ID</td>
+                        <td width="15%">Name product</td>
+                        <td width="20%">Image</td>
+                        <td width="10%">Unit Price</td>
+                        <td width="8%">Quality</td>
+                        <td width="12%">Created at</td>
+                        <td width="12%">Updated at</td>
+
+                    </tr>
+                    @foreach (var item in ViewBag.BillDetail)
+                    {
+                    <tr>
+                        <td>@item.id_bill</td>
+                        <td>@item.nameproduct</td>
+                        <td><a href="product.html"><img src="~/image/product/@item.imageproduct" alt="" style="height:290px;width:270px "></a></td>
+                        <td>@item.unit_price</td>
+                        <td>@item.quatity</td>
+                        <td><a href="#">@item.created_at</a></td>
+                        <td><a href="#">@item.updated_at</a></td>
+
+                    </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+

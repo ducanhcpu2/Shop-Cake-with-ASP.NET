@@ -20,6 +20,7 @@ namespace shop_cake.Controllers.Admin
         [HttpPost]
         public ActionResult Login(admin admin)
         {
+
             admin ad = (admin)Session["admin"];
             var _admin = db.admins.Where(s => s.email == admin.email);
             if (_admin.Any())
