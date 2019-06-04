@@ -41,13 +41,16 @@ namespace shop_cake.Controllers.Admin
             obj.name = model.product_name;
             obj.unit_price = model.unit_price;
             obj.promotion_price = model.promotion_price;
-            obj.image = image.FileName;
+            if (image != null)
+            {
+                obj.image = image.FileName;
+                image.SaveAs(Server.MapPath(Path.Combine("~/image/product/", image.FileName)));
+            }
             obj.id_product_type = model.id_product_type;
             obj.@new = model.@new;
             obj.unit = model.unit;
             
             obj.updated_at = System.DateTime.Now; 
-            image.SaveAs(Server.MapPath(Path.Combine("~/image/product/", image.FileName)));
             db.Entry(obj).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index","AdminProduct");
